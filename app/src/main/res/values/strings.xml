@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Villamos2</string>
+    <string name="title_activity_follow__me">Map</string>
+    <string name="followme">Követés</string>
+    <string name="maponly">Térkép</string>
+    <string name="speak2me">Audio</string>
+    <string name="manual">Kézikönyv</string>
+    <string name="download">Adat kezelő</string>
+    <string name="next">next</string>
+    <string name="right"><![CDATA[>]]></string>
+    <string name="left"><![CDATA[<]]></string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8a1bdf</color>
+    <color name="colorPrimaryDark">#000000  </color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="tramYellow">#f9f516</color>
+</resources>
