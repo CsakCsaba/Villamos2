@@ -5,9 +5,11 @@ import android.support.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Lamp(private val lampLoops: List<IntArray>, lat: Double, lon: Double ) : Crossroads(lat, lon) {
+class Lamp(private val lampLoops: List<IntArray>?, lat: Double, lon: Double ) : Crossroads(lat, lon) {
 
-    override var metersCheck = 100
+    override var metersCheck = 30
+
+    fun vanLampa():Boolean= if (lampLoops!=null) true else false
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun chooseCurrentCycle(current : LocalDateTime, lista : List<IntArray>) : IntArray {
@@ -22,7 +24,7 @@ class Lamp(private val lampLoops: List<IntArray>, lat: Double, lon: Double ) : C
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun timeLeft () : IntArray //green first 0, green second 1
+    fun timeLeft () : IntArray //green first 0, green second 1
     {
         var elapsedTimeInSeconds = 0
 
@@ -31,7 +33,7 @@ class Lamp(private val lampLoops: List<IntArray>, lat: Double, lon: Double ) : C
 
         val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
         val formatterString = current.format(formatter).toString().split(':')
-        val baseTime = chooseCurrentCycle(current,lampLoops)
+        val baseTime = chooseCurrentCycle(current,lampLoops!!)
 
         for (i in formatterString.indices){
             elapsedTimeInSeconds+= ((formatterString[i].toInt() - baseTime[i])*Math.pow(60.0,2.0-i)).toInt()//összes eltelt idő
@@ -47,6 +49,10 @@ class Lamp(private val lampLoops: List<IntArray>, lat: Double, lon: Double ) : C
 
         // vissza adott tömb elemei: 0.: mennyi idő van hátra a következő lámpa váltásig 1.:
 
+        //0.:első ciklus részből visszamaradt idő
+        //1.:második ciklus részből visszamaradt idő
+        //2.:teljes ciklus
+        //3.: szín
         if(baseTime[baseTime.size-1]>=elapsedTimeInCycle){ // ha a ciklus első felében vagyunk
             return intArrayOf(baseTime[baseTime.size-1] - elapsedTimeInCycle, baseTime[baseTime.size-2]-baseTime[baseTime.size-1],baseTime[baseTime.size-2], baseTime[baseTime.size-3])
         }

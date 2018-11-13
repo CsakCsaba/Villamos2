@@ -1,7 +1,12 @@
 package tram.csabi.com.villamos2
 
+import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
+import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
 import kotlinx.android.synthetic.main.activity_manual.*
 import kotlinx.android.synthetic.main.activity_menu.*
 
@@ -42,9 +47,11 @@ class ManualActivity : AppCompatActivity() {
     */
 
     }
+
+    @TargetApi(Build.VERSION_CODES.O)
     fun changeText()
     {
-        var t = h
+        hibafajta.justificationMode=JUSTIFICATION_MODE_INTER_WORD
         hibafajta.text = LogicHandler.chosen.instruments.keys.elementAt(h)
         manualText.text = LogicHandler.chosen.instrumentDescription(hibafajta.text as String)
     }
