@@ -53,29 +53,37 @@ class Follow_Me : AppCompatActivity(), OnMapReadyCallback {
         @SuppressLint("NewApi")
         override fun onLocationChanged(location: android.location.Location) {
            if(LogicHandler.follow) {
+               if(timer!=null)
+                   timer?.cancel()
                val latitude = location.latitude
                val longitude = location.longitude
 
-               val msg = "New Latitude: " + latitude + "\nNew Longitude: " + longitude
+              /* val msg = "New Latitude: " + latitude + "\nNew Longitude: " + longitude
                val toast = Toast.makeText(mContext, msg, Toast.LENGTH_SHORT)
                toast.setGravity(Gravity.TOP, 0, 0)
-               toast.show()
+               toast.show()*/
                val currentLatLng = LatLng(latitude, longitude)
                map.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 18.5f))
 
                for(cross in LogicHandler.chosen.crossroads){
                    if (cross.Warning(latitude,longitude)){
-                       val toast2 = Toast.makeText(mContext, "100 méteren belül veszélyes kereszteződés!", Toast.LENGTH_SHORT)
+                       val toast2 = Toast.makeText(mContext, "100 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
                        toast2.show()
                    }
                }
                for(stop in LogicHandler.chosen.lineStops){
                    if (stop.lamp.Warning(latitude,longitude)){
-                       val toast2 = Toast.makeText(mContext, "A ${stop.name} megállóban vagy", Toast.LENGTH_SHORT)
+                       val toast2 = Toast.makeText(mContext, "A ${stop.name} megállóban vagy", Toast.LENGTH_LONG)
                        toast2.show()
                        if(stop.lamp.vanLampa()){
-                           val ciklus = stop.lamp.timeLeft()
 
+                           val ciklus = stop.lamp.timeLeft()
+                           elsoValtas = ciklus[0]
+                           masodik = ciklus[1]
+                           szin=ciklus[3]
+                            val toast = Toast.makeText(mContext,"Most : " + if(szin==0)"ZÖLD" else "PIROS", Toast.LENGTH_LONG)
+                            toast.setGravity(Gravity.TOP, 0, 0)
+                            toast.show()
                            timerIndit()
                        }
                    }
@@ -109,11 +117,6 @@ class Follow_Me : AppCompatActivity(), OnMapReadyCallback {
         mContext = this
         this.locationManager = mContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 10f, this.locationListenerGPS)
-
-
-
-
-
     }
 
     @SuppressLint("MissingPermission")
@@ -182,12 +185,19 @@ class Follow_Me : AppCompatActivity(), OnMapReadyCallback {
 
     fun visszaSzamol()
     {
-        val lampaszin : String = if(szin==0) "szabadot" else "tiltot"
-        if(elsoValtas<12&&elsoValtas>9)
+        val lampaszin : String = if(szin==0) "tiltást" else "szabadot"
+        val toast3 = Toast.makeText(mContext, "Első: $elsoValtas, Második: $masodik $lampaszin", Toast.LENGTH_SHORT)
+        toast3.setGravity(Gravity.CENTER,0,0)
+        toast3.show()
+        if(elsoValtas==10)
         {
-            val toast2 = Toast.makeText(mContext, "10 másodpercen belül a lámpa $lampaszin ad", Toast.LENGTH_SHORT)
+            val toast2 = Toast.makeText(mContext, "10 másodpercen belül a lámpa $lampaszin ad", Toast.LENGTH_LONG)
             toast2.show()
-            timer!!.cancel()
+            elsoValtas = elsoValtas+masodik-1
+            masodik = 0
+            szin = 1-szin
+            if(elsoValtas<10)
+                timer!!.cancel()
         }
         else if(elsoValtas>10)
         {
@@ -204,6 +214,8 @@ class Follow_Me : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onDestroy() {
         locationManager.removeUpdates(locationListenerGPS)
+        if(timer!=null)
+            timer!!.cancel()
         //LogicHandler.follow = false
         super.onDestroy()
     }

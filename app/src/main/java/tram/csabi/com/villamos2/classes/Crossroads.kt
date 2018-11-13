@@ -9,6 +9,7 @@ open class Crossroads (val lat: Double, val lon : Double) {
     @RequiresApi(Build.VERSION_CODES.O)
     var lastChecked = LocalDateTime.of(1,1,1,1,1,1)
     open var metersCheck = 100
+    open var minuteCheck = 5
 
     @RequiresApi(Build.VERSION_CODES.O)
     open fun Warning (lat : Double, lon : Double) : Boolean{
@@ -19,7 +20,7 @@ open class Crossroads (val lat: Double, val lon : Double) {
 
 
         var most = LocalDateTime.now()
-        if ((most.compareTo(lastChecked)>0 &&  most.minute.minus(lastChecked.minute) >= 2)&& (distanceInM(this.lat,
+        if ((most.compareTo(lastChecked)>0 &&  most.minute.minus(lastChecked.minute) >= minuteCheck)&& (distanceInM(this.lat,
                 this.lon,lat,lon)<=metersCheck))
         {
             lastChecked = most

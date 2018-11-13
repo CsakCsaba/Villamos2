@@ -312,6 +312,12 @@ class LogicHandler {
                 doubleArrayOf(47.589608, 19.118013)//állomás
             )
             val allomasok3 = listOf(
+                TramStop("Csabi a dicsőséges", 47.588137, 19.114804, listOf(
+                    intArrayOf(5, 0, 0, 1, 90, 60),
+                    intArrayOf(9, 0, 0, 1, 90, 60),
+                    intArrayOf(17, 0, 0, 1, 90, 45),
+                    intArrayOf(23, 0, 0, 1, 0, 0)
+                )),
                 TramStop("Busz állomás", 47.589088, 19.114565, listOf()),
                 TramStop("Suli sarka", 47.590159, 19.116441, listOf()),
                 TramStop("Victory Fitness", 47.591566, 19.118136, listOf(

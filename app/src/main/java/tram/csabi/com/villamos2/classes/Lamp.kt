@@ -7,7 +7,8 @@ import java.time.format.DateTimeFormatter
 
 class Lamp(private val lampLoops: List<IntArray>?, lat: Double, lon: Double ) : Crossroads(lat, lon) {
 
-    override var metersCheck = 30
+    override var metersCheck = 20
+    override var minuteCheck = 2
 
     fun vanLampa():Boolean= if (lampLoops!=null) true else false
 
