@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_menu.*
 import javax.security.auth.login.LoginException
 
@@ -14,8 +15,8 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        LogicHandler.fillTrams()
 
+        LogicHandler.fillTrams()
 
 
         tramNumber.text = LogicHandler.currentNumber().toString()
@@ -43,6 +44,9 @@ class MenuActivity : AppCompatActivity() {
         }
         manual.setOnClickListener{
             startActivity(Intent(this, ManualActivity::class.java))
+        }
+        downloadmanager.setOnClickListener {
+            startActivity(Intent(this, DataBaseHandler::class.java))
         }
 
         setUpMap()
