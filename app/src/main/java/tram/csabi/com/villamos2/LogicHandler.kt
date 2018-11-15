@@ -243,6 +243,9 @@ class LogicHandler {
         fun fillTrams(){
 
             val utvonal = listOf(
+                doubleArrayOf(47.587420, 19.118058),
+                doubleArrayOf(47.585275, 19.117223),
+                doubleArrayOf(47.584153, 19.116948),
                 doubleArrayOf(47.582102, 19.116901),
                 doubleArrayOf(47.574732, 19.115206),
                 doubleArrayOf(47.577726, 19.115918),
@@ -253,11 +256,16 @@ class LogicHandler {
                 doubleArrayOf(47.565455, 19.111055),
                 doubleArrayOf(47.565430, 19.110747),
                 doubleArrayOf(47.565430, 19.110747),
-                doubleArrayOf(47.565337, 19.106411)
+                doubleArrayOf(47.565337, 19.106411),
+                doubleArrayOf( 47.565167, 19.100525) ,
+                doubleArrayOf(47.565004, 19.093977)
+
             )
 
-            val allomasok = listOf(
-                TramStop("ÓceánÁrok", 47.582102, 19.116901,
+            val allomasok = listOf( // bőrfestő 47.587420, 19.118058
+                TramStop("Bőrfestő utca", 47.587420, 19.118058, listOf()), // bőrönd 47.585275, 19.117223
+                TramStop("Bőröndös utca", 47.585275, 19.117223, listOf()),
+                TramStop("jármű telep utca", 47.582091, 19.116880,
                     listOf(
                         intArrayOf(5, 0, 0, 1, 90, 60),
                         intArrayOf(9, 0, 0, 1, 90, 60),
@@ -265,14 +273,20 @@ class LogicHandler {
                         intArrayOf(23, 0, 0, 1, 0, 0)
 
                 )),
-                TramStop("Járműtelep", 47.577726, 19.115918, listOf()),
-                TramStop("Járműtelep", 47.572159, 19.114164, listOf()),
-                TramStop("Járműtelep", 47.565838, 19.111601, listOf())
-
+                TramStop("Óceán árok", 47.577727, 19.115936, listOf()),
+                TramStop("Atlétikai stadion", 47.572173, 19.114139, listOf()),
+                TramStop("Újpest - rákos palota vasútállomás", 47.565830, 19.111618, listOf()),
+                TramStop("Szülő otthon", 47.565345, 19.106339, listOf()),
+                TramStop("Szakrendelő", 47.565167, 19.100525, listOf()),
+                TramStop("Nem tom", 47.565004, 19.093977, listOf())
+                //TramStop("Újpest - rákos palota vasútállomás", 47.565830, 19.111618, listOf())
             )
 
             val kereszt = listOf(
-                Crossroads(47.590361, 19.116744)
+                Crossroads(47.590361, 19.116744),
+                Crossroads(47.576854, 19.115752),
+                Crossroads(47.565622, 19.111375)
+
             )
             val inst = fillSzoveg()
             var traaaaam: TramLine =
@@ -312,13 +326,13 @@ class LogicHandler {
                 doubleArrayOf(47.589608, 19.118013)//állomás
             )
             val allomasok3 = listOf(
-                TramStop("Csabi a dicsőséges", 47.588137, 19.114804, listOf(
+                //TramStop("Csabi utca", 47.588137, 19.114804, listOf()),
+                TramStop("Busz állomás", 47.589088, 19.114565, listOf(
                     intArrayOf(5, 0, 0, 1, 90, 60),
                     intArrayOf(9, 0, 0, 1, 90, 60),
                     intArrayOf(17, 0, 0, 1, 90, 45),
                     intArrayOf(23, 0, 0, 1, 0, 0)
                 )),
-                TramStop("Busz állomás", 47.589088, 19.114565, listOf()),
                 TramStop("Suli sarka", 47.590159, 19.116441, listOf()),
                 TramStop("Victory Fitness", 47.591566, 19.118136, listOf(
                     intArrayOf(5, 0, 0, 1, 90, 60),
@@ -331,8 +345,8 @@ class LogicHandler {
 
             )
             val kereszt3 = listOf(
-                Crossroads(47.590361, 19.116744)
-                //,Crossroads(47.588020, 19.114814)
+                Crossroads(47.590361, 19.116744),
+                Crossroads(47.588137, 19.114804)
             )
 
             var seta: TramLine =

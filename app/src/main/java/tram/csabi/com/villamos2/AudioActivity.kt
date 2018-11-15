@@ -55,8 +55,9 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
                 for(cross in LogicHandler.chosen.crossroads){
                     if (cross.Warning(latitude,longitude)){
-                        val toast2 = Toast.makeText(mContext, "100 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
+                        val toast2 = Toast.makeText(mContext, "300 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
                         toast2.show()
+                        textToSpeech.speak("300 méteren belül veszélyes útszakasz",TextToSpeech.QUEUE_FLUSH,null)
                     }
                 }
                 for(stop in LogicHandler.chosen.lineStops){
@@ -139,6 +140,9 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if(textToSpeech!=null){
             textToSpeech.stop()
             textToSpeech.shutdown()
+        }
+        if(timer!=null){
+            timer!!.cancel()
         }
         super.onDestroy()
     }

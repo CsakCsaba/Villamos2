@@ -67,7 +67,7 @@ class Follow_Me : AppCompatActivity(), OnMapReadyCallback {
 
                for(cross in LogicHandler.chosen.crossroads){
                    if (cross.Warning(latitude,longitude)){
-                       val toast2 = Toast.makeText(mContext, "100 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
+                       val toast2 = Toast.makeText(mContext, "300 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
                        toast2.show()
                    }
                }

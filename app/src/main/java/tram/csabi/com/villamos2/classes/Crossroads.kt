@@ -8,7 +8,7 @@ open class Crossroads (val lat: Double, val lon : Double) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     var lastChecked = LocalDateTime.of(1,1,1,1,1,1)
-    open var metersCheck = 100
+    open var metersCheck = 300
     open var minuteCheck = 5
 
     @RequiresApi(Build.VERSION_CODES.O)
