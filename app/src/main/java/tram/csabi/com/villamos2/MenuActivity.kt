@@ -5,9 +5,7 @@ import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_menu.*
-import javax.security.auth.login.LoginException
 
 class MenuActivity : AppCompatActivity() {
 
