@@ -35,6 +35,10 @@ class DataBaseHandler : AppCompatActivity() {
             }
     }
 
+    fun commitoljGeci(){
+        
+    }
+
     override fun onStart() {
         super.onStart()
         currentUser = mAuth.currentUser
