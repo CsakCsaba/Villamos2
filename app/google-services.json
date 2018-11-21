@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "337829636172",
+    "firebase_url": "https://villamosbackend.firebaseio.com",
+    "project_id": "villamosbackend",
+    "storage_bucket": "villamosbackend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337829636172:android:0a1416c5c3077bf6",
+        "android_client_info": {
+          "package_name": "tram.csabi.com.villamos2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337829636172-desrioldlov3jtnk5f60hr90s987uv72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tram.csabi.com.villamos2",
+            "certificate_hash": "361bd00cbebf47daae9138709f93be8257479faa"
+          }
+        },
+        {
+          "client_id": "337829636172-uel562ro2401mnptab6qdmi8ki4uj106.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWNmfcfKyw0hTdFS5LVPR85e_JsaG94IQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337829636172-uel562ro2401mnptab6qdmi8ki4uj106.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
