@@ -1,4 +1,4 @@
-package tram.csabi.com.villamos2
+package tram.csabi.com.villamos2.View
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,20 +9,19 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.speech.tts.TextToSpeech
-import android.speech.tts.TextToSpeechService
 import android.view.Gravity
 import android.widget.Toast
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_audio.*
-import org.w3c.dom.Text
+import tram.csabi.com.villamos2.Logic.LogicHandler
+import tram.csabi.com.villamos2.R
 import java.util.*
 
 @Suppress("DEPRECATION")
-class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+open class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     lateinit var textToSpeech : TextToSpeech
     var timer: Timer?=null
@@ -34,17 +33,11 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var  szin: Int  = 0
 
 
-    private lateinit var map: GoogleMap
-    companion object {
-        const val LOCATION_PERMISSION_REQUEST_CODE = 1
-    }
-
-    private lateinit var lastLocation: Location
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    protected lateinit var fusedLocationClient: FusedLocationProviderClient
 
     lateinit var locationManager: LocationManager
     lateinit var mContext: Context
-    private var locationListenerGPS: LocationListener = object : LocationListener {
+    protected var locationListenerGPS: LocationListener = object : LocationListener {
         @SuppressLint("NewApi")
         override fun onLocationChanged(location: android.location.Location) {
             if(LogicHandler.follow) {
@@ -53,18 +46,29 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 val latitude = location.latitude
                 val longitude = location.longitude
 
-                for(cross in LogicHandler.chosen.crossroads){
+                checkCoordinates(latitude,longitude)
+
+                /*for(cross in LogicHandler.chosen.crossroads){
                     if (cross.Warning(latitude,longitude)){
-                        val toast2 = Toast.makeText(mContext, "300 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
+
+                        val warning = "300 méteren belül veszélyes kereszteződés!"
+                        warnUser(warning)
+
+                        /*val toast2 = Toast.makeText(mContext, "300 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
                         toast2.show()
-                        textToSpeech.speak("300 méteren belül veszélyes útszakasz",TextToSpeech.QUEUE_FLUSH,null)
+                        textToSpeech.speak("300 méteren belül veszélyes útszakasz",TextToSpeech.QUEUE_FLUSH,null)*/
                     }
                 }
                 for(stop in LogicHandler.chosen.lineStops){
                     if (stop.lamp.Warning(latitude,longitude)){
-                        val toast2 = Toast.makeText(mContext, "A ${stop.name} megállóban vagy", Toast.LENGTH_LONG)
+
+                        val warning = "A ${stop.name} megállóban vagy"
+                        warnUser(warning)
+
+                        /*val toast2 = Toast.makeText(mContext, "A ${stop.name} megállóban vagy", Toast.LENGTH_LONG)
                         textToSpeech.speak("A ${stop.name} megállóban vagy",TextToSpeech.QUEUE_FLUSH,null)
-                        toast2.show()
+                        toast2.show()*/
+
                         if(stop.lamp.vanLampa()){
 
                             val ciklus = stop.lamp.timeLeft()
@@ -77,7 +81,7 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                             timerIndit()
                         }
                     }
-                }
+                }*/
             }
         }
 
@@ -94,6 +98,43 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
+    @SuppressLint("NewApi")
+    protected open fun checkCoordinates(latitude: Double, longitude: Double) {
+        for(cross in LogicHandler.chosen.crossroads){
+            if (cross.Warning(latitude,longitude)){
+
+                val warning = "300 méteren belül veszélyes kereszteződés!"
+                warnUser(warning)
+
+                /*val toast2 = Toast.makeText(mContext, "300 méteren belül veszélyes kereszteződés!", Toast.LENGTH_LONG)
+                toast2.show()
+                textToSpeech.speak("300 méteren belül veszélyes útszakasz",TextToSpeech.QUEUE_FLUSH,null)*/
+            }
+        }
+        for(stop in LogicHandler.chosen.lineStops){
+            if (stop.lamp.Warning(latitude,longitude)){
+
+                val warning = "A ${stop.name} megállóban vagy"
+                warnUser(warning)
+
+                /*val toast2 = Toast.makeText(mContext, "A ${stop.name} megállóban vagy", Toast.LENGTH_LONG)
+                textToSpeech.speak("A ${stop.name} megállóban vagy",TextToSpeech.QUEUE_FLUSH,null)
+                toast2.show()*/
+
+                if(stop.lamp.vanLampa()){
+
+                    val ciklus = stop.lamp.timeLeft()
+                    elsoValtas = ciklus[0]
+                    masodik = ciklus[1]
+                    szin=ciklus[3]
+                    val toast = Toast.makeText(mContext,"Most : " + if(szin==0)"ZÖLD" else "PIROS", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.TOP, 0, 0)
+                    toast.show()
+                    timerIndit()
+                }
+            }
+        }
+    }
 
 
     @SuppressLint("MissingPermission")
@@ -114,15 +155,11 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         button2.setOnClickListener{
             tryIt()
         }
-
-
-
     }
     override fun onInit(status: Int) {
         if(status == TextToSpeech.SUCCESS ){
             val res: Int = textToSpeech.setLanguage(Locale("hu","HU"))
-            if(res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED)
-                Toast.makeText(applicationContext,"Nem lesz jó", Toast.LENGTH_SHORT).show()
+            if(res == TextToSpeech.LANG_MISSING_DATA || res == TextToSpeech.LANG_NOT_SUPPORTED){}
         }
     }
 
@@ -144,6 +181,7 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if(timer!=null){
             timer!!.cancel()
         }
+        locationManager.removeUpdates(locationListenerGPS)
         super.onDestroy()
     }
     fun timerIndit()
@@ -163,13 +201,13 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     {
         val lampaszin : String = if(szin==0) "tiltást" else "szabadot"
         val toast3 = Toast.makeText(mContext, "Első: $elsoValtas, Második: $masodik $lampaszin", Toast.LENGTH_SHORT)
-        toast3.setGravity(Gravity.CENTER,0,0)
-        toast3.show()
+        /*toast3.setGravity(Gravity.CENTER,0,0)
+        toast3.show()*/
         if(elsoValtas==10)
         {
-            val toast2 = Toast.makeText(mContext, "10 másodpercen belül a lámpa $lampaszin ad", Toast.LENGTH_LONG)
-            textToSpeech.speak("10 másodpercen belül a lámpa $lampaszin ad",TextToSpeech.QUEUE_FLUSH,null)
-            toast2.show()
+            //textToSpeech.speak("10 másodpercen belül a lámpa $lampaszin ad",TextToSpeech.QUEUE_FLUSH,null)
+            val warning : String = "10 másodpercen belül a lámpa $lampaszin ad"
+            warnUser(warning)
             elsoValtas = elsoValtas+masodik-1
             masodik = 0
             szin = 1-szin
@@ -187,5 +225,9 @@ class AudioActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             szin = 1-szin
         }
 
+    }
+
+    open fun warnUser(warning: String) {
+        textToSpeech.speak(warning,TextToSpeech.QUEUE_FLUSH,null)
     }
 }

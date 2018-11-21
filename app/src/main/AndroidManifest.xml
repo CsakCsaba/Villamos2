@@ -30,7 +30,7 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key"/>
 
-        <activity android:name=".MenuActivity">
+        <activity android:name=".View.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".Follow_Me"
+                android:name=".View.Follow_Me"
                 android:label="@string/title_activity_follow__me">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -46,11 +46,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".AudioActivity">
+        <activity android:name=".View.AudioActivity">
         </activity>
-        <activity android:name=".ManualActivity">
+        <activity android:name=".View.ManualActivity">
         </activity>
-        <activity android:name=".DataBaseHandler">
+        <activity android:name=".Logic.DataBaseHandler">
         </activity>
     </application>
 

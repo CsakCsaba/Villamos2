@@ -1,4 +1,4 @@
-package tram.csabi.com.villamos2
+package tram.csabi.com.villamos2.View
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_menu.*
+import tram.csabi.com.villamos2.Logic.DataBaseHandler
+import tram.csabi.com.villamos2.Logic.LogicHandler
+import tram.csabi.com.villamos2.R
 
 class MenuActivity : AppCompatActivity() {
 
@@ -57,7 +60,8 @@ class MenuActivity : AppCompatActivity() {
         ) {
             ActivityCompat.requestPermissions(
                 this,  //itt kéri el
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), Follow_Me.LOCATION_PERMISSION_REQUEST_CODE
+                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                Follow_Me.LOCATION_PERMISSION_REQUEST_CODE
             )
             return   //A kód ellenőrzi hogy az ACCES_FINE_LOCATION engedély adva van-e, ha nem akkor elkéri a felhasználótol
         }

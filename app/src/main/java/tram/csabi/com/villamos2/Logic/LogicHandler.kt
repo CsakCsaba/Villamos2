@@ -1,9 +1,9 @@
-package tram.csabi.com.villamos2
+package tram.csabi.com.villamos2.Logic
 
-import tram.csabi.com.villamos2.classes.Crossroads
-import tram.csabi.com.villamos2.classes.Lamp
-import tram.csabi.com.villamos2.classes.TramLine
-import tram.csabi.com.villamos2.classes.TramStop
+import com.google.gson.Gson
+import tram.csabi.com.villamos2.model.Crossroads
+import tram.csabi.com.villamos2.model.TramLine
+import tram.csabi.com.villamos2.model.TramStop
 
 class LogicHandler {
     companion object {
@@ -353,11 +353,15 @@ class LogicHandler {
                 TramLine(9, utvonal3, allomasok3, kereszt3, inst)
 
 
-            this.trams.add(traaaaam)
-            this.trams.add(traaaaam2)
-            this.trams.add(seta)
-            t=0
-            chosen = this.trams[0]
+            var gson = Gson()
+            var json = gson.toJson(kereszt3)
+
+
+            trams.add(traaaaam)
+            trams.add(traaaaam2)
+            trams.add(seta)
+            t =0
+            chosen = trams[0]
         }
         fun lineNumbers(): IntArray
         {
@@ -369,18 +373,18 @@ class LogicHandler {
         }
         fun currentNumber():Int = chosen.lineNumber.toInt()
         fun increment(){
-            if (t+1== lineNumbers().size)
-                t=0
+            if (t +1== lineNumbers().size)
+                t =0
             else
                 t++
             chosen = trams[t]
         }
         fun decrement(){
-            if (t-1== -1)
-                t= lineNumbers().size-1
+            if (t -1== -1)
+                t = lineNumbers().size-1
             else
                 t--
-            chosen= trams[t]
+            chosen = trams[t]
         }
     }
 }

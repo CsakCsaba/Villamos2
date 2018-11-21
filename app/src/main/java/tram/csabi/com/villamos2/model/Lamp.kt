@@ -1,4 +1,4 @@
-package tram.csabi.com.villamos2.classes
+package tram.csabi.com.villamos2.model
 
 import android.os.Build
 import android.support.annotation.RequiresApi
