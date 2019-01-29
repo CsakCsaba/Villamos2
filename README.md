@@ -8,8 +8,7 @@ Készítsen mobilalkalmazást, amely segíti a villamosvezetők munkamódszer-á
 kapcsolatos ismeretek és egyéb forgalmi információk gyors elérését. Az alkalmazásnak a következő funkciókkal kell rendelkeznie:
 az egyes villamosvonalak speciális tulajdonságainak ismertetése, lámpaciklusok előrejelzése a megállóból való elinduláskor,
 a villamostípusok kezeléséről és a leggyakoribb hibák elhárításáról szóló, kereshető kézikönyv, az offline tárolt adatok menedzselése.
-Az alkalmazás felhasználói profilok segítségével adjon lehetőséget külön a kezdő és a rutinos vezetők számára szükséges információk megjelenítésére,
-valamint a vezetés közbeni, csak audio üzemmód használatára.
+Az alkalmazás felhasználói profilok segítségével adjon lehetőséget külön a kezdő és a rutinos vezetők számára szükséges információk megjelenítésére, valamint a vezetés közbeni, csak audio üzemmód használatára.
 ======================================================================
 Az applikáció fő részei:
 -Kézikönyv: Adott jármű leírását tartalmazza, hibákra bontva
