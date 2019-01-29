@@ -11,6 +11,7 @@ a villamostípusok kezeléséről és a leggyakoribb hibák elhárításáról s
 Az alkalmazás felhasználói profilok segítségével adjon lehetőséget külön a kezdő és a rutinos vezetők számára szükséges információk megjelenítésére, valamint a vezetés közbeni, csak audio üzemmód használatára.
 ======================================================================
 Az applikáció fő részei:
+
 -Kézikönyv: Adott jármű leírását tartalmazza, hibákra bontva.
 
 -Vonal térkép: Egy térképet jelenít meg egy adott villamos vonalról.
