@@ -12,9 +12,13 @@ Az alkalmazás felhasználói profilok segítségével adjon lehetőséget kül�
 ======================================================================
 Az applikáció fő részei:
 -Kézikönyv: Adott jármű leírását tartalmazza, hibákra bontva.
+
 -Vonal térkép: Egy térképet jelenít meg egy adott villamos vonalról.
+
 -Menet térkép: A fenti térképet a felhasználó helyzetétől függően jeleníti meg, és információkkal látja el.
+
 -Menet pilóta: Csak hang formájában informálja a felhasználót.
+
 ======================================================================
 2019.01.29.: Az applikáció demo állapotban van. A szerverről történő mentés kezdeti állapotban van.
 
