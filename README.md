@@ -21,5 +21,6 @@ Az applikáció fő részei:
 -Menet pilóta: Csak hang formájában informálja a felhasználót.
 
 ======================================================================
+
 2019.01.29.: Az applikáció demo állapotban van. A szerverről történő mentés kezdeti állapotban van.
 
