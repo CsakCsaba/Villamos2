@@ -1,11 +1,11 @@
-package tram.csabi.com.villamos2.model
+package tram.csabi.com.villamos2.Model
 
 import android.os.Build
 import android.support.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Lamp(private val lampLoops: List<IntArray>?, lat: Double, lon: Double ) : Crossroads(lat, lon) {
+class Lamp(private val lampLoops: List<IntArray>?, lat: Double, lon: Double ) : Crossroads(lat, lon, "") {
 
     override var metersCheck = 30
     override var minuteCheck = 2

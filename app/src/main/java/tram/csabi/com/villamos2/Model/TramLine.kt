@@ -1,6 +1,6 @@
-package tram.csabi.com.villamos2.model
+package tram.csabi.com.villamos2.Model
 
-class TramLine(val lineNumber:Short = 0, val lineTrack  : List<DoubleArray>, val lineStops  : List<TramStop>,
+data class TramLine(val lineNumber:String, val lineTrack  : List<Coordinate>, val lineStops  : List<TramStop>,
                 val crossroads: List<Crossroads>, val instruments: HashMap<String,String>){
 
     //vissza adnak értéket
@@ -12,8 +12,8 @@ class TramLine(val lineNumber:Short = 0, val lineTrack  : List<DoubleArray>, val
             0 -> for(i in lineStops){
                 coordinates.add(arrayOf(i.lat.toString(),i.lon.toString(), i.name))            }
 
-            2-> for(i in crossroads){
-                coordinates.add(arrayOf(i.lat.toString(),i.lon.toString()))
+            1-> for(i in crossroads){
+                coordinates.add(arrayOf(i.lat.toString(),i.lon.toString(), i.name ))
             }
         }
         return coordinates

@@ -3,10 +3,12 @@
     <string name="title_activity_follow__me">Map</string>
     <string name="followme">Követés</string>
     <string name="maponly">Térkép</string>
-    <string name="speak2me">Audio</string>
+    <string name="speak2me">Csak hang</string>
     <string name="manual">Kézikönyv</string>
-    <string name="download">Adat kezelő</string>
+    <string name="download">Adatkezelő</string>
     <string name="next">next</string>
-    <string name="right"><![CDATA[>]]></string>
-    <string name="left"><![CDATA[<]]></string>
+    <string name="right"><![CDATA[->]]></string>
+    <string name="left"><![CDATA[<-]]></string>
+    <string name="divider">|</string>
+    <string name="example">XYM</string>
 </resources>

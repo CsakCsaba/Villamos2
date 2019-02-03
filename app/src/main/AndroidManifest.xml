@@ -9,6 +9,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
             android:allowBackup="true"
@@ -46,11 +47,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".View.AudioActivity">
+        <activity android:name=".View.AudioActivity" >
         </activity>
         <activity android:name=".View.ManualActivity">
         </activity>
-        <activity android:name=".Logic.DataBaseHandler">
+        <activity android:name=".View.DataBaseHandler">
+        </activity>
+        <activity android:name=".View.Login"
+        android:theme="@style/AppTheme.CustomTheme">
         </activity>
     </application>
 

@@ -1,10 +1,10 @@
-package tram.csabi.com.villamos2.model
+package tram.csabi.com.villamos2.Model
 import android.os.Build
 import android.support.annotation.RequiresApi
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-open class Crossroads (val lat: Double, val lon : Double) {
+open class Crossroads (val lat: Double, val lon : Double, val name:String) {
 
     @RequiresApi(Build.VERSION_CODES.O)
     var lastChecked = LocalDateTime.of(1,1,1,1,1,1)

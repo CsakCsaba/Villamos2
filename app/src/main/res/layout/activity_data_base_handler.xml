@@ -5,6 +5,98 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Logic.DataBaseHandler">
+        tools:context=".View.DataBaseHandler">
 
+    <TextView
+            android:text="@string/divider"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:textSize="36sp"
+            android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/numberOfCurrentTram2"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"/>
+    <Button
+            android:text="törlés"
+            android:background="@color/red"
+            android:textColor="@color/white"
+            android:layout_width="100dp"
+            android:id="@+id/deleteOrDownload"
+            android:textSize="24sp" android:layout_height="wrap_content"
+            android:textStyle="bold" android:textAllCaps="false"
+            android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonInfo"
+            android:layout_marginTop="5dp"/>
+    <Button
+            android:text="váltás"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_width="100dp"
+            android:id="@+id/change"
+            android:textSize="24sp" android:layout_height="wrap_content"
+            android:textStyle="bold" android:textAllCaps="false"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+            android:text="@string/right"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_width="100dp"
+            android:id="@+id/rightTram3"
+            android:textSize="24sp" android:layout_height="wrap_content"
+            android:textStyle="bold" android:textAllCaps="false"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfCurrentTram2"
+            app:layout_constraintStart_toEndOf="@+id/textView3" android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.154"/>
+    <Button
+            android:text="@string/left"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:layout_width="100dp"
+            android:id="@+id/leftTram2"
+            android:textSize="24sp" android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfCurrentTram2"
+            android:layout_marginTop="4dp" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView3" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.861"/>
+    <TextView
+            android:text="12"
+            android:layout_width="127dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberOfCurrentTram2" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:textAlignment="center" android:textSize="36sp" android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/border"
+
+            app:layout_constraintHorizontal_bias="0.502" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.329"/>
+    <TextView
+            android:text="váltás letöltésre"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:id="@+id/changeText"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/change" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.501" android:textSize="14sp"/>
+    <TextView
+            android:text="meglévő vonal törlése"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:id="@+id/buttonInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintHorizontal_bias="0.502" android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"/>
 </android.support.constraint.ConstraintLayout>

@@ -1,9 +1,13 @@
 package tram.csabi.com.villamos2.Logic
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.widget.TextView
 import com.google.gson.Gson
-import tram.csabi.com.villamos2.model.Crossroads
-import tram.csabi.com.villamos2.model.TramLine
-import tram.csabi.com.villamos2.model.TramStop
+import tram.csabi.com.villamos2.Model.Coordinate
+import tram.csabi.com.villamos2.Model.Crossroads
+import tram.csabi.com.villamos2.Model.TramLine
+import tram.csabi.com.villamos2.Model.TramStop
 
 class LogicHandler {
     companion object {
@@ -11,6 +15,8 @@ class LogicHandler {
         var trams :MutableList<TramLine> = mutableListOf()
         lateinit var chosen : TramLine
         var follow = true
+        var compass:Boolean = false
+        var loginSuccess = false
 
         fun fillSzoveg() :HashMap<String,String>
         {
@@ -243,22 +249,22 @@ class LogicHandler {
         fun fillTrams(){
 
             val utvonal = listOf(
-                doubleArrayOf(47.587420, 19.118058),
-                doubleArrayOf(47.585275, 19.117223),
-                doubleArrayOf(47.584153, 19.116948),
-                doubleArrayOf(47.582102, 19.116901),
-                doubleArrayOf(47.574732, 19.115206),
-                doubleArrayOf(47.577726, 19.115918),
-                doubleArrayOf(47.574732, 19.115206),
-                doubleArrayOf(47.572159, 19.114164),
-                doubleArrayOf(47.565838, 19.111601),
-                doubleArrayOf(47.565564, 19.111388),
-                doubleArrayOf(47.565455, 19.111055),
-                doubleArrayOf(47.565430, 19.110747),
-                doubleArrayOf(47.565430, 19.110747),
-                doubleArrayOf(47.565337, 19.106411),
-                doubleArrayOf( 47.565167, 19.100525) ,
-                doubleArrayOf(47.565004, 19.093977)
+                Coordinate(47.587420, 19.118058),
+                Coordinate(47.585275, 19.117223),
+                Coordinate(47.584153, 19.116948),
+                Coordinate(47.582102, 19.116901),
+                Coordinate(47.574732, 19.115206),
+                Coordinate(47.577726, 19.115918),
+                Coordinate(47.574732, 19.115206),
+                Coordinate(47.572159, 19.114164),
+                Coordinate(47.565838, 19.111601),
+                Coordinate(47.565564, 19.111388),
+                Coordinate(47.565455, 19.111055),
+                Coordinate(47.565430, 19.110747),
+                Coordinate(47.565430, 19.110747),
+                Coordinate(47.565337, 19.106411),
+                Coordinate( 47.565167, 19.100525) ,
+                Coordinate(47.565004, 19.093977)
 
             )
 
@@ -283,21 +289,21 @@ class LogicHandler {
             )
 
             val kereszt = listOf(
-                Crossroads(47.590361, 19.116744),
-                Crossroads(47.576854, 19.115752),
-                Crossroads(47.565622, 19.111375)
+                Crossroads(47.590361, 19.116744, "veszélyes útszakas"),
+                Crossroads(47.576854, 19.115752, "veszélyes kereszteződés"),
+                Crossroads(47.565622, 19.111375, "sebesség korlátozó tábla")
 
             )
             val inst = fillSzoveg()
             var traaaaam: TramLine =
-                TramLine(14, utvonal, allomasok, kereszt, inst)
+                TramLine("14M", utvonal, allomasok, kereszt, inst)
 
             val utvonal2 = listOf(
-                doubleArrayOf(47.582102, 19.116901),
-                doubleArrayOf(47.574732, 19.115206),
-                doubleArrayOf(47.577726, 19.115918),
-                doubleArrayOf(47.574732, 19.115206),
-                doubleArrayOf(47.572159, 19.114164)
+                Coordinate(47.582102, 19.116901),
+                Coordinate(47.574732, 19.115206),
+                Coordinate(47.577726, 19.115918),
+                Coordinate(47.574732, 19.115206),
+                Coordinate(47.572159, 19.114164)
             )
             val allomasok2 = listOf(
                 TramStop("Járműtelep", 47.582102, 19.116901, listOf()),
@@ -305,25 +311,25 @@ class LogicHandler {
             )
 
             val kereszt2 = listOf(
-                Crossroads(47.590361, 19.116744)
+                Crossroads(47.590361, 19.116744,"tábla")
             )
 
             var traaaaam2: TramLine =
-                TramLine(10, utvonal2, allomasok2, kereszt2, inst)
+                TramLine("10", utvonal2, allomasok2, kereszt2, inst)
 
 
             //Séta kápon:
 
             val utvonal3 = listOf(
-                doubleArrayOf(47.589088, 19.114565), // állomás
-                doubleArrayOf(47.590159, 19.116441), // állomás // 47.590159, 19.116441
-                doubleArrayOf(47.590358, 19.116747),
-                doubleArrayOf(47.590889, 19.117498),
-                doubleArrayOf(47.591566, 19.118136),//állomás
-                doubleArrayOf(47.591377, 19.119140),//állomás
-                doubleArrayOf(47.590151, 19.118667),
-                doubleArrayOf(47.589793, 19.118399),
-                doubleArrayOf(47.589608, 19.118013)//állomás
+                Coordinate(47.589088, 19.114565), // állomás
+                Coordinate(47.590159, 19.116441), // állomás // 47.590159, 19.116441
+                Coordinate(47.590358, 19.116747),
+                Coordinate(47.590889, 19.117498),
+                Coordinate(47.591566, 19.118136),//állomás
+                Coordinate(47.591377, 19.119140),//állomás
+                Coordinate(47.590151, 19.118667),
+                Coordinate(47.589793, 19.118399),
+                Coordinate(47.589608, 19.118013)//állomás
             )
             val allomasok3 = listOf(
                 //TramStop("Csabi utca", 47.588137, 19.114804, listOf()),
@@ -345,12 +351,12 @@ class LogicHandler {
 
             )
             val kereszt3 = listOf(
-                Crossroads(47.590361, 19.116744),
-                Crossroads(47.588137, 19.114804)
+                Crossroads(47.590361, 19.116744, "bármi"),
+                Crossroads(47.588137, 19.114804, "sebesség korlátozó tábla")
             )
 
             var seta: TramLine =
-                TramLine(9, utvonal3, allomasok3, kereszt3, inst)
+                TramLine("9", utvonal3, allomasok3, kereszt3, inst)
 
 
             var gson = Gson()
@@ -363,15 +369,25 @@ class LogicHandler {
             t =0
             chosen = trams[0]
         }
-        fun lineNumbers(): IntArray
+        fun lineNumbers(): Array<String>
         {
-            var numbers = IntArray(trams.size)
-            for (i in 0.. numbers.size-1){
-                numbers[i] = trams[i].lineNumber.toInt()
+            var numbers  = mutableListOf<String>()
+            for (i in trams){
+                //numbers[i] = trams[i].lineNumber.toString()
+                numbers.add(i.lineNumber)
             }
-            return numbers
+            return numbers.toTypedArray()
         }
-        fun currentNumber():Int = chosen.lineNumber.toInt()
+        fun currentNumber():String {
+            when(chosen.lineNumber.length){
+//                1-> return "   "+chosen.lineNumber+"   "
+//                2-> return "  "+chosen.lineNumber+"  "
+                else-> return chosen.lineNumber
+            }
+
+        } //chosen.lineNumber.toString()
+
+
         fun increment(){
             if (t +1== lineNumbers().size)
                 t =0
@@ -386,5 +402,24 @@ class LogicHandler {
                 t--
             chosen = trams[t]
         }
+        fun changeCompass(c:Boolean){
+            compass =c
+        }
+        fun isNetworkConnected(context:Context):Boolean{
+            var haveWifi=false
+            var haveMobileData=false
+            val connectivityManager =  context.getSystemService(Context.CONNECTIVITY_SERVICE) as (ConnectivityManager)
+            val networkInfos = connectivityManager.allNetworkInfo
+            for (info in networkInfos){
+                if(info.typeName == "WIFI")
+                    if(info.isConnected)
+                        haveWifi=true
+                if(info.typeName == "MOBILE")
+                    if(info.isConnected)
+                        haveMobileData=true
+            }
+            return haveMobileData||haveWifi
+        }
+
     }
 }

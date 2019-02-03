@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import kotlinx.android.synthetic.main.activity_menu.*
-import tram.csabi.com.villamos2.Logic.DataBaseHandler
 import tram.csabi.com.villamos2.Logic.LogicHandler
 import tram.csabi.com.villamos2.R
+
 
 class MenuActivity : AppCompatActivity() {
 
@@ -19,16 +19,19 @@ class MenuActivity : AppCompatActivity() {
 
         LogicHandler.fillTrams()
 
-
-        tramNumber.text = LogicHandler.currentNumber().toString()
-        right.setOnClickListener{
+        numberOfCurrentTram.text = LogicHandler.currentNumber().toString()
+        rightTram.setOnClickListener{
             LogicHandler.increment()
-            tramNumber.text = LogicHandler.currentNumber().toString()
+            numberOfCurrentTram.text = LogicHandler.currentNumber().toString()
+
         }
-        left.setOnClickListener{
+        leftTram.setOnClickListener{
             LogicHandler.decrement()
-            tramNumber.text = LogicHandler.currentNumber().toString()
+            numberOfCurrentTram.text = LogicHandler.currentNumber().toString()
+
         }
+
+
 
 
 
@@ -49,6 +52,10 @@ class MenuActivity : AppCompatActivity() {
         downloadmanager.setOnClickListener {
             startActivity(Intent(this, DataBaseHandler::class.java))
         }
+        compass.setOnCheckedChangeListener{ buttonView, isChecked->
+            LogicHandler.changeCompass(compass.isChecked)
+        }
+
 
         setUpMap()
     }
